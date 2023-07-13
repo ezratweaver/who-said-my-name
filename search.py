@@ -46,8 +46,8 @@ def sort_article_data(articles, total_articles):
         print("--------------------------------")
     return total_articles
 
-total_articles, articles = find_articles(PROMPT, FROM_DATE, api_key)
 
-total_articles = sort_article_data(articles, total_articles)
-
-print(f"\n\n{FROM_DATE}: Total Articles Found: {total_articles}")
+if __name__ == "__main__":
+    total_articles, articles = find_articles(PROMPT, FROM_DATE, api_key)
+    total_articles = sort_article_data(articles, total_articles)
+    print(f"\n\n{FROM_DATE}: Total Articles Found: {total_articles}")
