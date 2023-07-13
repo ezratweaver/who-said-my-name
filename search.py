@@ -1,14 +1,14 @@
 import requests
 import os
-import sqlite3
-
+from datetime import date
 from dotenv import load_dotenv
+
 load_dotenv()
 api_key = os.environ.get("api")
 
 
 PROMPT = "Red Wing Scarlet Kitchen and Bar"
-FROM_DATE = "2023-06-13"
+FROM_DATE = str(date.today())
 
 def find_articles(prompt, from_date, api_key) -> dict:
     query = f"https://newsapi.org/v2/everything?q={prompt}&from={from_date}&sortBy=publishedAt&apiKey={api_key}"
@@ -44,4 +44,5 @@ def sort_article_data(articles):
 total_results, articles = find_articles(PROMPT, FROM_DATE, api_key)
 
 print(f"Total Articles Found: {total_results}")
+
 sort_article_data(articles)
