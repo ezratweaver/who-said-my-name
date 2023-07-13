@@ -23,7 +23,7 @@ def find_articles(prompt, from_date, api_key) -> dict:
         quit()
     return data['totalResults'], articles
 
-def sort_article_data(articles):
+def sort_article_data(articles, total_articles):
     for article in articles:
         article_data = (article["title"], article["publishedAt"], 
                         article["author"], article["source"]["name"], 
@@ -31,9 +31,10 @@ def sort_article_data(articles):
                         article["urlToImage"])
         
         if check_for_article(article_data):
+            total_articles-= 1
             continue
 
-        print("--------------------")
+        print("---------Article Found!---------")
         print("Article Title:", article_data[0])
         print("Published Date:", article_data[1])
         print("Author:", article_data[2])
@@ -41,10 +42,12 @@ def sort_article_data(articles):
         print("Article Description:", article_data[4])
         print("Article URL:", article_data[5])
         print("Cover Image:", article_data[6])
+        print("--------------------------------")
+    return total_articles
+
+total_articles, articles = find_articles(PROMPT, FROM_DATE, api_key)
+
+total_articles = sort_article_data(articles, total_articles)
 
 
-total_results, articles = find_articles(PROMPT, FROM_DATE, api_key)
-
-print(f"{FROM_DATE}: Total Articles Found: {total_results}")
-
-sort_article_data(articles)
+print(f"\n\n{FROM_DATE}: Total Articles Found: {total_articles}")
