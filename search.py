@@ -10,7 +10,6 @@ api_key = os.environ.get("api")
 
 PROMPT = "Red Wing Scarlet Kitchen and Bar"
 FROM_DATE = str(date.today())
-FROM_DATE = "2023-06-13"
 
 def find_articles(prompt, from_date, api_key) -> dict:
     query = f"https://newsapi.org/v2/everything?q={prompt}&from={from_date}&sortBy=publishedAt&apiKey={api_key}"
@@ -33,6 +32,8 @@ def sort_article_data(articles, total_articles):
         if check_for_article(article_data):
             total_articles-= 1
             continue
+        
+        add_entry(*article_data)
 
         print("---------Article Found!---------")
         print("Article Title:", article_data[0])
@@ -48,6 +49,5 @@ def sort_article_data(articles, total_articles):
 total_articles, articles = find_articles(PROMPT, FROM_DATE, api_key)
 
 total_articles = sort_article_data(articles, total_articles)
-
 
 print(f"\n\n{FROM_DATE}: Total Articles Found: {total_articles}")
