@@ -43,6 +43,6 @@ def sort_article_data(articles):
 
 total_results, articles = find_articles(PROMPT, FROM_DATE, api_key)
 
-print(f"Total Articles Found: {total_results}")
+print(f"{FROM_DATE}: Total Articles Found: {total_results}")
 
 sort_article_data(articles)
