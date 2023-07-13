@@ -23,19 +23,20 @@ def find_articles(prompt, from_date, api_key) -> dict:
 
 def sort_article_data(articles):
     for article in articles:
-        source = article["source"]["name"]
-        author = article["author"]
         article_title = article["title"]
+        published_date = article["publishedAt"]
+        author = article["author"]
+        source = article["source"]["name"]
         article_description = article["description"]
         article_url = article["url"]
         cover_image = article["urlToImage"]
-        published_date = article["publishedAt"]
+        
 
         print("--------------------")
         print("Article Title:", article_title)
         print("Published Date:", published_date)
         print("Author:", author)
-        print("Journalist Name:", source)
+        print("Source Name:", source)
         print("Article Description:", article_description)
         print("Article URL:", article_url)
         print("Cover Image:", cover_image)
