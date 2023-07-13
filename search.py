@@ -16,6 +16,9 @@ def find_articles(prompt, from_date, api_key) -> dict:
     response = requests.get(query)
     data = response.json()
     articles = data.get("articles")
+    if articles is None:
+        print(response.text)
+        quit()
     return data['totalResults'], articles
 
 def sort_article_data(articles):
