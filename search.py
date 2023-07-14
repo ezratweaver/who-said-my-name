@@ -12,7 +12,8 @@ PROMPT = "Red Wing Scarlet Kitchen and Bar"
 FROM_DATE = str(date.today())
 
 def find_articles(prompt, from_date, api_key) -> dict:
-    query = f"https://newsapi.org/v2/everything?q={prompt}&from={from_date}&sortBy=publishedAt&apiKey={api_key}"
+    query = f"""https://newsapi.org/v2/everything?q={prompt}&
+            from={from_date}&sortBy=publishedAt&apiKey={api_key}"""
 
     response = requests.get(query)
     data = response.json()
