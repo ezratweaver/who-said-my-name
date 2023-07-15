@@ -10,6 +10,15 @@ known_articles = cursor.fetchall()
 
 
 def check_for_article(article_tuple):
+    """
+    Checks if the given article tuple is known.
+    
+    Args:
+        article_tuple (tuple): The article tuple to check.
+        
+    Returns:
+        bool: True if the article is known, False otherwise.
+    """
     for article in known_articles:
         if article_tuple == article:
             return True
