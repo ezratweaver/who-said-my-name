@@ -7,7 +7,6 @@ from database_manager import add_entry, check_for_article
 load_dotenv()
 api_key = os.environ.get("api")
 
-
 PROMPT = "Red Wing Scarlet Kitchen and Bar"
 FROM_DATE = str(date.today())
 
