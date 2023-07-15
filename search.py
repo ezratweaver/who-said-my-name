@@ -36,13 +36,24 @@ def find_articles(prompt: str, from_date: str, api_key: str) -> dict:
     return data['totalResults'], articles
 
 def sort_article_data(articles, total_articles):
+    """
+    Sorts article data against database of articles, updates true number
+    of new articles found.
+
+    Args:
+        articles (list): A list of articles.
+        total_articles (int): The total number of articles.
+
+    Returns:
+        int: The updated total number of articles.
+    """
     for article in articles:
         article_data = (article["title"], article["publishedAt"], 
                         article["author"], article["source"]["name"], 
                         article["description"], article["url"],
                         article["urlToImage"])
         
-        if check_for_article(article_data):
+        if check_for_article(article_data) is True:
             total_articles-= 1
             continue
         
