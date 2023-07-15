@@ -1,6 +1,8 @@
 import sqlite3
 
-db_connection = sqlite3.connect('found-articles.db')
+DATABASE_FILE_NAME = 'found-articles.db'
+
+db_connection = sqlite3.connect(DATABASE_FILE_NAME)
 
 cursor = db_connection.cursor()
 
