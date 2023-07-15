@@ -11,7 +11,19 @@ api_key = os.environ.get("api")
 PROMPT = "Red Wing Scarlet Kitchen and Bar"
 FROM_DATE = str(date.today())
 
-def find_articles(prompt, from_date, api_key) -> dict:
+def find_articles(prompt: str, from_date: str, api_key: str) -> dict:
+    """
+    Finds articles based on a prompt and date using the News API.
+
+    Args:
+        prompt (str): The search prompt for the articles.
+        from_date (str): The starting date to search for articles (YYYY-MM-DD).
+        api_key (str): The API key for accessing the News API.
+
+    Returns:
+        int: a number that represents the total number of articles found.
+        dict: a list of articles that match the prompt given.
+    """
     query = f"""https://newsapi.org/v2/everything?q={prompt}&
             from={from_date}&sortBy=publishedAt&apiKey={api_key}"""
 
