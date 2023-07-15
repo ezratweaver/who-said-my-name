@@ -9,7 +9,7 @@ cursor.execute("SELECT * FROM articles")
 known_articles = cursor.fetchall()
 
 
-def check_for_article(article_tuple):
+def check_for_article(article_tuple) -> bool:
     """
     Checks if the given article tuple is known.
     
@@ -24,7 +24,20 @@ def check_for_article(article_tuple):
             return True
     return False
 
-def add_entry(title, date, author, source, description, url, image):
+def add_entry(title: str, date: str, author: str, source: str,
+                description: str, url: str, image: str) -> None:
+    """
+    Adds an entry to the articles table in the database.
+    
+    Args:
+        title (str): The title of the article.
+        date (str): The published date of the article.
+        author (str): The author of the article.
+        source (str): The source of the article.
+        description (str): The description of the article.
+        url (str): The URL of the article.
+        image (str): The cover image of the article.
+    """
     cursor.execute(f"""INSERT INTO articles
         (article_title, published_date, author, source, 
         article_description, article_url, cover_image)
