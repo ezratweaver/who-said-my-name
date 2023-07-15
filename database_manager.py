@@ -11,7 +11,8 @@ known_articles = cursor.fetchall()
 
 def check_for_article(article_tuple) -> bool:
     """
-    Checks if the given article tuple is known.
+    Checks if the given article tuple is found in database of found articles,
+        returns true if found, and false if its not found in that database
     
     Args:
         article_tuple (tuple): The article tuple to check.
