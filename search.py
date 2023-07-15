@@ -47,17 +47,23 @@ def sort_article_data(articles, total_articles):
             continue
         
         add_entry(*article_data)
+        print_article_metadata(*article_data)
 
-        print("---------Article Found!---------")
-        print("Article Title:", article_data[0])
-        print("Published Date:", article_data[1])
-        print("Author:", article_data[2])
-        print("Source Name:", article_data[3])
-        print("Article Description:", article_data[4])
-        print("Article URL:", article_data[5])
-        print("Cover Image:", article_data[6])
-        print("--------------------------------")
     return total_articles
+
+def print_article_metadata(article_title: str, published_date: str, author: str, 
+                                    source_name: str, article_description: str, 
+                                    article_url: str, cover_image: str) -> None:
+
+    print("---------Article Found!---------")
+    print("Article Title:", article_title)
+    print("Published Date:", published_date)
+    print("Author:", author)
+    print("Source Name:", source_name)
+    print("Article Description:", article_description)
+    print("Article URL:", article_url)
+    print("Cover Image:", cover_image)
+    print("--------------------------------")
 
 
 if __name__ == "__main__":
