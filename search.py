@@ -54,7 +54,18 @@ def sort_article_data(articles, total_articles):
 def print_article_metadata(article_title: str, published_date: str, author: str, 
                                     source_name: str, article_description: str, 
                                     article_url: str, cover_image: str) -> None:
+    """
+    Prints the metadata of an article.
 
+    Args:
+        article_title (str): The title of the article.
+        published_date (str): The published date of the article.
+        author (str): The author of the article.
+        source_name (str): The name of the source.
+        article_description (str): The description of the article.
+        article_url (str): The URL of the article.
+        cover_image (str): The cover image of the article.
+    """
     print("---------Article Found!---------")
     print("Article Title:", article_title)
     print("Published Date:", published_date)
