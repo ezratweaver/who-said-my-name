@@ -34,14 +34,16 @@ def find_articles(prompt: str, from_date: str, api_key: str) -> dict:
         quit()
     return data['totalResults'], articles
 
-def sort_article_data(articles, total_articles):
+def sort_article_data(articles, total_articles, add_to_db=True):
     """
-    Sorts article data against database of articles, updates true number
-    of new articles found.
+    Sorts article data against database of articles, returns number
+    of articles not found in that database.
 
     Args:
         articles (list): A list of articles.
         total_articles (int): The total number of articles.
+        add_to_db (bool)(default = True): bool switch for adding nonfound articles
+                                            to database.
 
     Returns:
         int: The updated total number of articles.
@@ -56,7 +58,8 @@ def sort_article_data(articles, total_articles):
             total_articles-= 1
             continue
         
-        add_entry(*article_data)
+        if add_to_db() is True:
+            add_entry(*article_data)
         print_article_metadata(*article_data)
 
     return total_articles
