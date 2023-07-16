@@ -68,14 +68,14 @@ def sort_article_data(articles: list, add_to_db=True):
 
     return total_articles, new_article_list
 
-def display_articles(articles: list, display_big_lists=True):
+def display_article_list(articles: list, display_big_lists=True):
     if len(articles) > 10 and display_big_lists is False:
         raise ValueError("List is To Large!!!!!")
     for article in articles:
-        print_article(*article)
+        print_single_article(*article)
 
 
-def print_article(article_title: str, published_date: str, author: str, 
+def print_single_article(article_title: str, published_date: str, author: str, 
                                     source_name: str, article_description: str, 
                                     article_url: str, cover_image: str) -> None:
     """
@@ -104,4 +104,5 @@ def print_article(article_title: str, published_date: str, author: str,
 if __name__ == "__main__":
     total_articles, articles = find_articles(PROMPT, FROM_DATE, api_key)
     total_articles, sorted_articles = sort_article_data(articles, add_to_db=False)
+    display_article_list()
     print(f"\n{FROM_DATE}: Total Articles Found: {total_articles}")
