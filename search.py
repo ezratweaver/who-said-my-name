@@ -7,7 +7,9 @@ from database_manager import add_entry, check_for_article
 load_dotenv()
 api_key = os.environ.get("api")
 
-PROMPT = "Red Wing Scarlet Kitchen and Bar"
+MAX_ARTICLES_DISPLAYED = 3
+
+PROMPT = "Trump"
 FROM_DATE = str(date.today())
 
 def find_articles(prompt: str, from_date: str, api_key: str) -> dict:
@@ -70,14 +72,15 @@ def sort_article_data(articles: list, add_to_db=True):
     return new_article_list
 
 def display_article_list(articles: list, display_big_lists=True):
-    if len(articles) > 10 and display_big_lists is False:
-        articles = articles[0:10]
-        missing_articles_count = len(articles) - 10
+    and_more = False
+    if len(articles) > MAX_ARTICLES_DISPLAYED and display_big_lists is False:
+        missing_articles_count = len(articles) - MAX_ARTICLES_DISPLAYED
+        articles = articles[0:MAX_ARTICLES_DISPLAYED]
         and_more = True
     for article in articles:
         print_single_article(*article)
     if and_more is True:
-        print(f"and {missing_articles_count} more...")
+        print(f"and {missing_articles_count} more...\n")
 
 def print_single_article(article_title: str, published_date: str, author: str, 
                                     source_name: str, article_description: str, 
@@ -102,11 +105,11 @@ def print_single_article(article_title: str, published_date: str, author: str,
     print("Article Description:", article_description)
     print("Article URL:", article_url)
     print("Cover Image:", cover_image)
-    print("--------------------------------")
+    print("--------------------------------\n")
 
 
 if __name__ == "__main__":
     articles = find_articles(PROMPT, FROM_DATE, api_key)
     sorted_articles = sort_article_data(articles, add_to_db=False)
     display_article_list(sorted_articles, display_big_lists=False)
-    print(f"\n{FROM_DATE}: Total Articles Found: {len(sorted_articles)}")
+    print(f"{FROM_DATE}: Total Articles Found: {len(sorted_articles)}")
