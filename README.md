@@ -1,2 +1,2 @@
 # who-said-my-name
-A webscraper that searchs sepcific google news searches for articles about a specific phrase
+A script that uses the NewsAPI to find articles on a certain prompt, and stores them in a database
