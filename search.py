@@ -62,10 +62,18 @@ def sort_article_data(articles: list, add_to_db=True):
             continue
         
         new_article_list.append(article_data)
+
         if add_to_db is True:
             add_entry(*article_data)
 
     return total_articles, new_article_list
+
+def display_articles(articles: list, display_big_lists=True):
+    if len(articles) > 10 and display_big_lists is False:
+        raise ValueError("List is To Large!!!!!")
+    for article in articles:
+        print_article(*article)
+
 
 def print_article(article_title: str, published_date: str, author: str, 
                                     source_name: str, article_description: str, 
