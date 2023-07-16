@@ -58,7 +58,7 @@ def sort_article_data(articles, total_articles, add_to_db=True):
             total_articles-= 1
             continue
         
-        if add_to_db() is True:
+        if add_to_db is True:
             add_entry(*article_data)
         print_article_metadata(*article_data)
 
@@ -92,5 +92,5 @@ def print_article_metadata(article_title: str, published_date: str, author: str,
 
 if __name__ == "__main__":
     total_articles, articles = find_articles(PROMPT, FROM_DATE, api_key)
-    total_articles = sort_article_data(articles, total_articles)
+    total_articles = sort_article_data(articles, total_articles, add_to_db=False)
     print(f"\n\n{FROM_DATE}: Total Articles Found: {total_articles}")
