@@ -47,7 +47,9 @@ def sort_article_data(articles, total_articles, add_to_db=True):
 
     Returns:
         int: The updated total number of articles.
+        list: Of updated list of articles without duplicates.
     """
+    new_article_list = []
     for article in articles:
         article_data = (article["title"], article["publishedAt"], 
                         article["author"], article["source"]["name"], 
@@ -58,11 +60,11 @@ def sort_article_data(articles, total_articles, add_to_db=True):
             total_articles-= 1
             continue
         
+        new_article_list.append(article_data)
         if add_to_db is True:
             add_entry(*article_data)
-        print_article_metadata(*article_data)
 
-    return total_articles
+    return total_articles, new_article_list
 
 def print_article_metadata(article_title: str, published_date: str, author: str, 
                                     source_name: str, article_description: str, 
