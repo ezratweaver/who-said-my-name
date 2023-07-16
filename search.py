@@ -34,7 +34,7 @@ def find_articles(prompt: str, from_date: str, api_key: str) -> dict:
         quit()
     return data['totalResults'], articles
 
-def sort_article_data(articles, total_articles, add_to_db=True):
+def sort_article_data(articles: list, add_to_db=True):
     """
     Sorts article data against database of articles, returns number
     of articles not found in that database.
@@ -49,6 +49,7 @@ def sort_article_data(articles, total_articles, add_to_db=True):
         int: The updated total number of articles.
         list: Of updated list of articles without duplicates.
     """
+    total_articles = len(articles)
     new_article_list = []
     for article in articles:
         article_data = (article["title"], article["publishedAt"], 
@@ -66,7 +67,7 @@ def sort_article_data(articles, total_articles, add_to_db=True):
 
     return total_articles, new_article_list
 
-def print_article_metadata(article_title: str, published_date: str, author: str, 
+def print_article(article_title: str, published_date: str, author: str, 
                                     source_name: str, article_description: str, 
                                     article_url: str, cover_image: str) -> None:
     """
@@ -94,5 +95,5 @@ def print_article_metadata(article_title: str, published_date: str, author: str,
 
 if __name__ == "__main__":
     total_articles, articles = find_articles(PROMPT, FROM_DATE, api_key)
-    total_articles = sort_article_data(articles, total_articles, add_to_db=False)
+    total_articles, sorted_articles = sort_article_data(articles, add_to_db=False)
     print(f"\n{FROM_DATE}: Total Articles Found: {total_articles}")
