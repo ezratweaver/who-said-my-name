@@ -23,6 +23,7 @@ def find_articles(prompt: str, from_date: str, api_key: str) -> dict:
         int: a number that represents the total number of articles found.
         dict: a list of articles that match the prompt given.
     """
+    print("Contacting API, Please Wait... \n")
     query = f"""https://newsapi.org/v2/everything?q={prompt}&
             from={from_date}&sortBy=publishedAt&apiKey={api_key}"""
 
@@ -104,5 +105,5 @@ def print_single_article(article_title: str, published_date: str, author: str,
 if __name__ == "__main__":
     total_articles, articles = find_articles(PROMPT, FROM_DATE, api_key)
     total_articles, sorted_articles = sort_article_data(articles, add_to_db=False)
-    display_article_list()
+    display_article_list(sorted_articles)
     print(f"\n{FROM_DATE}: Total Articles Found: {total_articles}")
